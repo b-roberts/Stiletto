@@ -9,6 +9,33 @@
 
 define('LARAVEL_START', microtime(true));
 
+
+if (!function_exists('route')) {
+    function route($name, $parameters = [], $absolute = null)
+    {
+        if ($absolute === null) {
+            return url(config('app.url').app('url')->route($name, $parameters, false));
+        }
+        return app('url')->route($name, $parameters, $absolute);
+    }
+}
+
+/**
+* Generate an asset path for the application. [PATCHED]
+*
+* @param  string  $path
+* @param  bool    $secure
+* @return string
+*/
+if (!function_exists('asset')) {
+    function asset($path, $secure = null)
+    {
+        return url(config('app.url') . '/'. ltrim($path, '/'));
+    }
+}
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -22,6 +49,7 @@ define('LARAVEL_START', microtime(true));
 */
 
 require __DIR__.'/../vendor/autoload.php';
+
 
 /*
 |--------------------------------------------------------------------------
