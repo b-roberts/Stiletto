@@ -61,7 +61,7 @@
 
 -->
 
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show aside-menu-md-show ">
+<body class="app header-fixed aside-menu-show sidebar-show">
   @include('header')
   <div class="app-body">
       @include('left_menu')

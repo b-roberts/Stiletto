@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="app-footer">
         <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a>
         </span>
     </footer>
