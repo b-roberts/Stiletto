@@ -11,6 +11,7 @@
 @push('styles')
 <style>
 #articleContent blockquote{
+	padding:1em;
     color: #336573;
     background-color: #e0f3f8;
     border-color: #d3eef6;
@@ -30,68 +31,64 @@
 <h1>{{$article->title}}</h1>
 <h2>{{$article->summary}}</h2>
 
-@if($article->description)
-    <div class="card">
-        <div class="card-body" id="articleContent">
-            @if($article->imageurl)
-                <span class="col-4 float-left">
-                    <img src="{{$article->imageurl}}" class="img-fluid"/>
-                </span>
-            @endif
-            {!!$article->description!!}
+<div class="nav-tabs-boxed">
+    <ul class="nav nav-tabs" role="tablist">
+        @if($article->description)
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#articleContent" role="tab" aria-controls="articleContent">Description</a>
+            </li>
+        @endif
+        @if ($article->statblock)
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#statblock" role="tab" aria-controls="profile">Stat Block</a>
+            </li>
+        @endif
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#home-1" role="tab" aria-controls="home">Specific Relations</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile-1" role="tab" aria-controls="profile">General</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#messages-1" role="tab" aria-controls="messages">Graph</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        @if($article->description)
+            <div class="tab-pane" id="articleContent" role="tabpanel">
+                @if($article->imageurl)
+                    <span class="col-4 float-left">
+                        <img src="{{$article->imageurl}}" class="img-fluid"/>
+                    </span>
+                @endif
+                {!!$article->description!!}
+            </div>
+        @endif
+        <div class="tab-pane" id="home-1" role="tabpanel">
+            @includeif('article.custom_index.' . $article->concept)
+        </div>
+        <div class="tab-pane" id="statblock">
+            {!!$article->statblockRendered!!}
+        </div>
+        <div class="tab-pane" id="profile-1" role="tabpanel">
+            @includeif('article.custom_index.general')
+        </div>
+        <div class="tab-pane" id="messages-1" role="tabpanel">
+            <div id="inner-details"></div>
+            <div id ="infovis" style="height:75vh; background:black; overflow:hidden; "></div>
+            <script>
+            var json = {!!json_encode($graph)!!};
+            </script>
+            <script src="{{asset('js/test.js')}}"></script>
         </div>
     </div>
-@endif
-
-
-
-<div class="nav-tabs-boxed">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home-1" role="tab" aria-controls="home">Specific</a></li>
-<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile-1" role="tab" aria-controls="profile">General</a></li>
-<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages-1" role="tab" aria-controls="messages">Graph</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="home-1" role="tabpanel">
-    @includeif('article.custom_index.' . $article->concept)
 </div>
-<div class="tab-pane" id="profile-1" role="tabpanel">
-    @includeif('article.custom_index.general')
-</div>
-<div class="tab-pane" id="messages-1" role="tabpanel">
-<div id="inner-details"></div>
-<div id ="infovis" style="height:1000px; background:black;"></div>
+
+@push('scripts')
 <script>
-var json = {!!json_encode($graph)!!};
+$('.nav-tabs li:first-child a').tab('show')
 </script>
- 
-
-    <script src="{{asset('js/test.js')}}"></script>
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@if ($article->statblock)
-<div class="card">
-<div class="card-body" id="statblock">
-{!!$article->statblockRendered!!}
-</div>
-</div>
-@endif
+@endpush
 
 @endsection
 
