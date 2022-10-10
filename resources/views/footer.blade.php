@@ -1,6 +1,8 @@
 <footer class="app-footer">
         <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a>
         </span>
+        |
+        <a href="{{route('unlinked')}}">View Unlinked Articles</a>
     </footer>
 
     <!-- Bootstrap and necessary plugins -->

@@ -31,6 +31,7 @@ Route::get('article/{article}/preview',['uses'=>'ArticleController@preview'])->n
 
 
 
+Route::get('unlinked',['uses'=>'ArticleController@unlinked'])->name('unlinked');
 Route::get('connection/{connection}',['uses'=>'ConnectionController@edit'])->name('connection.edit');
 Route::put('connection/{connection}',['uses'=>'ConnectionController@update'])->name('connection.update');
 Route::delete('connection/{connection}',['uses'=>'ConnectionController@destroy'])->name('connection.destroy');

@@ -42,6 +42,15 @@ class ArticleController extends Controller
             'articles'=>$articles]);
     }
 
+    public function unlinked()
+    {
+        //
+        $articles = Article::whereDoesntHave('forwardConnections')->whereDoesntHave('reverseConnections')->orderBy('title')->get();
+        return view('article.unlinked', [
+            'articles'=>$articles]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
