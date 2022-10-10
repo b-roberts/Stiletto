@@ -62,25 +62,4 @@
 @endforeach
 </ul>
 @endsection
-@push('scripts')
-<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
-<script>
-
-CKEDITOR.config.stylesSet="my_styles:{{asset('/js/ckeditor.styles.js')}}";
-CKEDITOR.replace( 'editor' , {
-        'customConfig': '{{asset('/js/ckeditor.config.js')}}'
-} );
-
-
-CKEDITOR.stylesSet.add( 'my_styles', [
-    // Block-level styles
-    { name: 'alert-info', element: 'div', styles: { 'class': 'alert alert-info' } },
-    { name: 'Red Title' , element: 'h3', styles: { 'color': 'Red' } },
-
-    // Inline styles
-    { name: 'text-info', element: 'span', attributes: { 'class': 'text-info' } },
-    { name: 'text-danger', element: 'span', attributes: { 'class': 'text-danger' } },
-    { name: 'Marker: Yellow', element: 'span', styles: { 'background-color': 'Yellow' } }
-] );
-</script>
-@endpush
+@include('modules.editor')
