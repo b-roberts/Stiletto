@@ -48,6 +48,11 @@
                 <li class="nav-title">
                     Notes
                 </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="{{route('concept',['concept'=>'Item'])}}">
+                        <i class="nav-icon fas fa-treasure-chest"></i> Items
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('concept',['concept'=>'Folder'])}}">
                         <i class="nav-icon fas fa-folder"></i> Folders
