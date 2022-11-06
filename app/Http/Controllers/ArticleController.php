@@ -148,11 +148,15 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         $articles = Article::get()->map(function($e) {
-            return ['id'=>$e->id, 'label'=>"($e->concept) $e->title"];})->values();
-
+            return ['id'=>$e->id, 'label'=>"($e->concept) $e->title"];
+        })->values();
 
         $connectionTypes = \App\ConnectionType::orderBy('label')->get()->pluck('label')->toArray();
         $connectionTypes = array_combine($connectionTypes, $connectionTypes);
+        foreach ($article->conceptModel->connectionTypes as $relevantType) {
+            $connectionTypes[$relevantType->label] = "*" . $relevantType->label;
+        }
+        asort($connectionTypes);
         return view('article.link', [
             'article'=>$article,
             'articles'=>$articles,

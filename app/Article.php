@@ -42,4 +42,7 @@ class Article extends Model
     {
         return $this->morphOne('App\Pin', 'pinnable');
     }
+    public function conceptModel() {
+        return $this->belongsTo(Concept::class, 'concept', 'name');
+    }
 }
