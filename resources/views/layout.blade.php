@@ -27,6 +27,7 @@
     <!-- Main styles for this application -->
     <link rel="stylesheet" href="{{ asset('/css/theme.css') }}">
     <link href="/css/custom.css" rel="stylesheet">
+    <link href="{{asset('/css/print.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 

@@ -1,0 +1,15 @@
+@media print {
+    .breadcrumb, .aside-menu, .nav-tabs, .app-footer {
+        display: none !important;;
+    }
+    .tab-content .tab-pane {
+        padding:0;
+        border:0;
+    }
+    .tab-content { 
+        border:0;
+    }
+    #statblock {
+        display: block;
+    }
+}
