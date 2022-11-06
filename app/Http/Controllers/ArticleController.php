@@ -16,6 +16,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request);
         //
         $articles = Article::orderBy('title')->get();
         $transformer = new \App\Transformers\GraphTransformer;
@@ -100,6 +101,26 @@ class ArticleController extends Controller
             $transformer = new \App\Transformers\GraphTransformer;
             $graph = [];
             $graph  = $transformer->transform($article);
+            $article->forwardConnections->map(function($articlex) use ($transformer) {
+                $transformer->transform($articlex);
+                $articlex->forwardConnections->map(function($articlex) use ($transformer) {
+                    return $transformer->transform($articlex);
+                });
+                $articlex->reverseConnections->map(function($articlex) use ($transformer) {
+                    return $transformer->transform($articlex);
+                });
+            });
+            $article->reverseConnections->map(function($articlex) use ($transformer) {
+                $transformer->transform($articlex);
+                $articlex->forwardConnections->map(function($articlex) use ($transformer) {
+                    return $transformer->transform($articlex);
+                });
+                $articlex->reverseConnections->map(function($articlex) use ($transformer) {
+                    return $transformer->transform($articlex);
+                });
+            });
+            $graph = $transformer->getGraph();
+
 
         return view('article.show', ['article'=>$article,'articles'=>$articles,'graph'=>$graph]);
     }

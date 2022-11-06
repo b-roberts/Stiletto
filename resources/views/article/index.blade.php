@@ -21,7 +21,7 @@ Articles
 var json = {!!json_encode($graph)!!};
 </script>
 <div id="inner-details"></div>
-    <div id ="infovis" style="height:75vh; background:black; "></div>
+    <div id ="infovis" style="height:75vh; background:black; overflow:hidden; "></div>
 
     <script src="{{asset('js/test.js')}}"></script>
     <script src="{{asset('js/rgraph.js')}}"></script>
