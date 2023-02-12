@@ -4,6 +4,7 @@
 @endsection
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{{route('concept',['concept'=>$article->concept])}}">{{$article->concept}}</a> </li>
+@includeif('article.breadcrumb.' . $article->concept)
 <li class="breadcrumb-item active" aria-current="page">{{$article->title}}</li>
 
 @endsection
