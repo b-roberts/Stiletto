@@ -3,10 +3,10 @@
 {{$article->title}}
 @endsection
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{{route('concept',['concept'=>$article->concept])}}">{{$article->concept}}</a> </li>
-@includeif('article.breadcrumb.' . $article->concept)
-<li class="breadcrumb-item active" aria-current="page">{{$article->title}}</li>
-
+    <x-breadcrumb href="{{route('article.index')}}">Articles</x-breadcrumb>
+    <x-breadcrumb href="{{route('concept',['concept'=>$article->concept])}}">{{$article->concept}}</x-breadcrumb>
+    @includeif('article.breadcrumb.' . $article->concept)
+    <x-breadcrumb active>{{$article->title}}</x-breadcrumb>
 @endsection
 
 @push('styles')

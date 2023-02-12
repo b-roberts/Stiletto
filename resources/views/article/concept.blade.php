@@ -3,17 +3,14 @@
 {{$concept}}
 @endsection
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{{route('article.index')}}">Articles</a> </li>
-<li class="breadcrumb-item active" aria-current="page">{{$concept}}</li>
+    <x-breadcrumb href="{{route('article.index')}}">Articles</x-breadcrumb>
+    <x-breadcrumb active>{{$concept}}</x-breadcrumb>
 @endsection
 @section('content')
-<h1>{{$concept}}</h1>
-<div class="card">
-<div class="card-body">
-@foreach($articles as $article)
-@include('modules.article_media',['article'=>$article])
-
-@endforeach
-</div>
-</div>
+    <h1>{{$concept}}</h1>
+    <x-card>
+        @foreach($articles as $article)
+            @include('modules.article_media',['article'=>$article])
+        @endforeach
+    </x-card>
 @endsection

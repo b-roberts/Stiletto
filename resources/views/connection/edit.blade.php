@@ -15,8 +15,7 @@
 @section('content')
 <h1>{{$article->title}}</h1>
 <h2>{{$article->summary}}</h2>
-<div class="card">
-<div class="card-body">
+<x-card>
 {{Form::model($connection, ['route'=>['connection.update',$connection],'method'=>'put'])}}
 
 <div class="form-group">
@@ -37,8 +36,7 @@
   
 {{Form::submit('Save',['class'=>'btn btn-primary'])}}
 {{Form::close()}}
-</div>
-</div>
+</x-card>
 
 
 @endsection

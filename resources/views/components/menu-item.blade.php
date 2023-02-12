@@ -1,0 +1,1 @@
+<a class="dropdown-item {{$attributes['class']}}" {{ $attributes }}>{{$slot}}</a>

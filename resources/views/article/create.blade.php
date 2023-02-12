@@ -1,12 +1,12 @@
 @extends('layout')
 @section('breadcrumbs')
-
+  <x-breadcrumb href="{{route('article.index')}}">Articles</x-breadcrumb>
+  <x-breadcrumb active>Create</x-breadcrumb>
 @endsection
 @section('breadcrumb-menu')
 @endsection
 @section('content')
-<div class="card">
-<div class="card-body">
+<x-card>
 {{Form::open( ['route'=>['article.store'],'method'=>'post'])}}
 
 <div class="form-group">
@@ -37,8 +37,7 @@
 </div>
 {{Form::submit('Save',['class'=>'btn btn-primary'])}}
 {{Form::close()}}
-</div>
-</div>
+</x-card>
 
 
 @endsection

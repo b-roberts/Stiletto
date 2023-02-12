@@ -1,18 +1,11 @@
 @extends('layout')
 @section('page_title')
-Articles
-@endsection
-@section('breadcrumbs')
-@endsection
-@section('breadcrumb-menu')
+Unlinked Articles
 @endsection
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            @foreach($articles as $article)
-                @include('modules.article_media',['article'=>$article])
-            @endforeach
-        </div>
-    </div>
-
+    <x-card title="Unlinked Articles">
+        @foreach($articles as $article)
+            @include('modules.article_media',['article'=>$article])
+        @endforeach
+    </x-card>
 @endsection

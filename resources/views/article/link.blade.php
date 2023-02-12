@@ -3,9 +3,11 @@
 <link herf="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
 @endpush
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="#">{{$article->concept}}</a> </li>
-<li class="breadcrumb-item active" aria-current="page">{{$article->title}}</li>
-
+  <x-breadcrumb href="{{route('article.index')}}">Articles</x-breadcrumb>
+  <x-breadcrumb href="{{route('concept',['concept'=>$article->concept])}}">{{$article->concept}}</x-breadcrumb>
+  @includeif('article.breadcrumb.' . $article->concept)
+  <x-breadcrumb href="{{route('article.show', ['article'=>$article])}}">{{$article->title}}</x-breadcrumb>
+  <x-breadcrumb active>Link</x-breadcrumb>
 @endsection
 @section('breadcrumb-menu')
 <a href="{{route('article.edit',['article'=>$article])}}">Edit</a>
@@ -13,8 +15,7 @@
 @section('content')
 <h1>{{$article->title}}</h1>
 <h2>{{$article->summary}}</h2>
-<div class="card">
-<div class="card-body">
+<x-card>
 {{Form::model($article, ['route'=>['article.link',$article],'method'=>'put'])}}
 
 <div class="form-group">
@@ -35,8 +36,7 @@
   
 {{Form::submit('Save',['class'=>'btn btn-primary'])}}
 {{Form::close()}}
-</div>
-</div>
+</x-card>
 
 
 @endsection
