@@ -3,9 +3,10 @@
 <script>
 
 CKEDITOR.config.stylesSet="my_styles:{{asset('/js/ckeditor.styles.js')}}";
+CKEDITOR.config.height='50vh';
 CKEDITOR.config.contentsCss = [
-'http://192.168.1.2/dnd-tombs/public/css/editor.css',
-'http://192.168.1.2/dnd-tombs/public/css/main.css'
+    '{{asset('css/editor.css')}}',
+    '{{asset('custom.css')}}'
 ];
 CKEDITOR.replace( 'editor' , {
         'customConfig': '{{asset('/js/ckeditor.config.js')}}'
