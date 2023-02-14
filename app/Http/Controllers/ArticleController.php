@@ -138,6 +138,36 @@ class ArticleController extends Controller
         return view('article.edit', ['article'=>$article,'concepts'=>$concepts]);
     }
 
+    public function autolink($id)
+    {
+        $article = Article::findOrFail($id);
+        $articles = Article::pluck('title', 'id');
+
+        $existingConnection = $article->forwardConnections->pluck('title')->concat($article->reverseConnections->pluck('title'));
+        $existingConnection[] = $article->title;
+        $articles = $articles->diff($existingConnection);
+
+        $potentialLinks = collect();
+        foreach ($articles as $id=>$title) {
+            $regexp = '/' . str_replace('/','\\/', $title) . '/';
+            $matches = [];
+            preg_match($regexp, $article->description, $matches);
+            if (sizeof($matches)) {
+                $potentialLinks[$id] = $title;
+            }
+        }
+
+        $connectionTypes = \App\ConnectionType::orderBy('label')->get()->pluck('label')->toArray();
+        $connectionTypes = array_combine($connectionTypes, $connectionTypes);
+        foreach ($article->conceptModel->connectionTypes as $relevantType) {
+            $connectionTypes[$relevantType->label] = "*" . $relevantType->label;
+        }
+        asort($connectionTypes);
+
+        return view('article.autolink', ['article'=>$article,'potentialLinks'=>$potentialLinks, 'connectionTypes'=>$connectionTypes]);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

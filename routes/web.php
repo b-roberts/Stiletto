@@ -19,6 +19,7 @@ Route::resource('article', 'ArticleController' );
 Route::get('concept/{concept}',['uses'=>'ArticleController@concept'])->name('concept');
 Route::get('article/{article}/link',['uses'=>'ArticleController@link'])->name('link');
 Route::put('article/{article}/link',['uses'=>'ArticleController@updateLink'])->name('article.link');
+Route::get('article/{article}/autolink',['uses'=>'ArticleController@autolink'])->name('autolink');
 
 Route::get('article/{article}/pin',['uses'=>'ArticleController@pin'])->name('article.pin');
 

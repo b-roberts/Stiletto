@@ -22,6 +22,7 @@
 @section('breadcrumb-menu')
     <a href="{{route('article.edit',['article'=>$article])}}" class="btn btn-link">Edit</a>
     <a href="{{route('link',['article'=>$article])}}" class="btn btn-link">Link</a>
+    <a href="{{route('autolink',['article'=>$article])}}" class="btn btn-link">AutoLink</a>
     @if ($article->pin)
         <a href="{{route('article.pin',['article'=>$article])}}" class="btn btn-link">Pin <i class="fas fa-heart"></i></a>
     @else
