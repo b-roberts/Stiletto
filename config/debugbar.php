@@ -14,7 +14,7 @@ return [
      |
      */
 
-    'enabled' => env('DEBUGBAR_ENABLED', null),
+    'enabled' => env('DEBUGBAR_ENABLED', null) && $_SERVER['HTTP_X_FORWARDED_FOR']=='192.168.1.2',
     'except' => [
         'telescope*',
         'horizon*',

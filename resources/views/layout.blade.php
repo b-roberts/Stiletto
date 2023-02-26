@@ -70,7 +70,7 @@
     <main class="main">
         <ol class="breadcrumb">
           @yield('breadcrumbs')
-          <li class="breadcrumb-menu d-md-down-none">
+          <li class="breadcrumb-menu ">
             @yield('breadcrumb-menu')
             @stack('breadcrumb-menu')
               <a class="btn btn-link" href="{{route('article.create')}}" > New Article</a>

@@ -57,7 +57,7 @@
     </ul>
     <div class="tab-content">
         @if($article->description)
-            <div class="tab-pane" id="articleContent" role="tabpanel">
+            <div class="tab-pane clearfix" id="articleContent" role="tabpanel">
                 @if($article->imageurl)
                     <span class="col-4 float-left">
                         <img src="{{$article->imageurl}}" class="img-fluid"/>
